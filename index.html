@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dat Ha</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #f5f0e8;
+    --black: #0a0a0a;
+    --yellow: #ffe135;
+    --white: #ffffff;
+    --border: 3px solid #0a0a0a;
+    --shadow: 5px 5px 0px #0a0a0a;
+    --shadow-sm: 3px 3px 0px #0a0a0a;
+  }
+
+  body {
+    font-family: 'Courier New', Courier, monospace;
+    background: var(--bg);
+    color: var(--black);
+    min-height: 100vh;
+  }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
+
+  /* Nav */
+  .nav {
+    border-bottom: var(--border);
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo { font-size: 16px; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 0; }
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    color: var(--black);
+    padding: 6px 14px;
+    border: var(--border);
+    margin-left: -3px;
+    transition: background 0.1s;
+  }
+  .nav-links a:hover { background: var(--yellow); }
+
+  /* Hero */
+  .hero {
+    padding: 4rem 0 3rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: start;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--yellow);
+    border: var(--border);
+    padding: 4px 10px;
+    margin-bottom: 1.4rem;
+  }
+  .hero h1 {
+    font-size: 54px;
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 .stroke {
+    -webkit-text-stroke: 3px var(--black);
+    color: transparent;
+  }
+  .hero-sub {
+    font-size: 13px;
+    line-height: 1.8;
+    max-width: 420px;
+    margin-bottom: 2rem;
+    font-family: 'Courier New', monospace;
+  }
+  .hero-cta { display: flex; gap: 0; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 10px 20px;
+    border: var(--border);
+    background: var(--white);
+    color: var(--black);
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: -3px;
+    transition: background 0.1s, box-shadow 0.1s, transform 0.1s;
+    box-shadow: var(--shadow-sm);
+  }
+  .btn:hover { background: var(--bg); transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--black); }
+  .btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--black); }
+  .btn-primary { background: var(--yellow); }
+  .btn-primary:hover { background: #ffd700; }
+
+  /* Avatar box */
+  .avatar-box {
+    width: 140px;
+    height: 160px;
+    border: var(--border);
+    box-shadow: var(--shadow);
+    background: var(--white);
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .avatar-box img { width: 100%; height: 100%; object-fit: cover; }
+  .avatar-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: #aaa;
+  }
+  .avatar-placeholder i { font-size: 40px; }
+  .avatar-placeholder span { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* Section */
+  .section { padding: 2.5rem 0; border-top: var(--border); }
+  .section-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--black);
+    color: var(--white);
+    padding: 4px 12px;
+    margin-bottom: 1.6rem;
+  }
+
+  /* Projects */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+  }
+  .project-card {
+    background: var(--white);
+    border: var(--border);
+    margin: -3px 0 0 -3px;
+    padding: 1.2rem;
+    text-decoration: none;
+    color: var(--black);
+    display: block;
+    transition: background 0.1s, transform 0.1s, box-shadow 0.1s;
+    position: relative;
+  }
+  .project-card:hover { background: var(--yellow); transform: translate(-3px, -3px); box-shadow: var(--shadow); z-index: 1; }
+  .project-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .project-card h3 { font-size: 13px; font-weight: 900; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 0.02em; }
+  .project-card p { font-size: 11px; line-height: 1.6; }
+  .project-coming { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-top: 10px; }
+
+  /* Interests */
+  .interests { display: flex; flex-direction: column; gap: 0; }
+  .interest-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    border: var(--border);
+    margin-top: -3px;
+    background: var(--white);
+  }
+  .interest-num {
+    font-size: 12px;
+    font-weight: 900;
+    background: var(--yellow);
+    border-right: var(--border);
+    padding: 1rem;
+    min-width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .interest-body { padding: 1rem 1.2rem; }
+  .interest-body h3 { font-size: 13px; font-weight: 900; text-transform: uppercase; margin-bottom: 4px; letter-spacing: 0.02em; }
+  .interest-body p { font-size: 12px; line-height: 1.6; }
+
+  /* About */
+  .about-block {
+    background: var(--white);
+    border: var(--border);
+    box-shadow: var(--shadow);
+    padding: 1.5rem 1.8rem;
+  }
+  .about-block p { font-size: 13px; line-height: 1.85; }
+  .about-block strong { font-weight: 900; background: var(--yellow); padding: 0 3px; }
+
+  /* Footer */
+  .footer {
+    border-top: var(--border);
+    padding: 1.5rem 0 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer p { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+  .footer-links { display: flex; gap: 0; }
+  .footer-links a {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    color: var(--black);
+    padding: 6px 14px;
+    border: var(--border);
+    margin-left: -3px;
+  }
+  .footer-links a:hover { background: var(--yellow); }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav class="nav">
+    <div class="nav-logo">Dat Ha</div>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#interests">Interests</a>
+      <a href="mailto:phudatha1210@gmail.com">Email</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div>
+      <div class="hero-tag">2nd year · AI builder</div>
+      <h1>Dat<br><span class="stroke">Ha.</span></h1>
+      <p class="hero-sub">I build AI applications and explore the frontiers of physics simulation, world models, and self-directed learning tools.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://github.com" target="_blank">
+          <i class="ti ti-brand-github"></i> GitHub
+        </a>
+        <a class="btn" href="mailto:phudatha1210@gmail.com">
+          <i class="ti ti-mail"></i> Contact
+        </a>
+      </div>
+    </div>
+    <div class="avatar-box" id="avatar-box">
+      <div class="avatar-placeholder">
+        <i class="ti ti-user"></i>
+        <span>Photo</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="projects">
+    <div class="section-label">Projects</div>
+    <div class="projects-grid">
+      <a class="project-card" href="https://github.com" target="_blank">
+        <div class="project-card-top">
+          <i class="ti ti-atom" style="font-size:22px;"></i>
+          <i class="ti ti-arrow-up-right" style="font-size:14px;"></i>
+        </div>
+        <h3>AI × Physics</h3>
+        <p>Applying neural networks to physics simulation and discovery.</p>
+        <p class="project-coming">&#x25A0; Link coming soon</p>
+      </a>
+      <a class="project-card" href="https://github.com" target="_blank">
+        <div class="project-card-top">
+          <i class="ti ti-world" style="font-size:22px;"></i>
+          <i class="ti ti-arrow-up-right" style="font-size:14px;"></i>
+        </div>
+        <h3>World model</h3>
+        <p>Building latent-space models that reason about environment dynamics.</p>
+        <p class="project-coming">&#x25A0; Link coming soon</p>
+      </a>
+      <a class="project-card" href="https://github.com" target="_blank">
+        <div class="project-card-top">
+          <i class="ti ti-brain" style="font-size:22px;"></i>
+          <i class="ti ti-arrow-up-right" style="font-size:14px;"></i>
+        </div>
+        <h3>AI study tool</h3>
+        <p>Self-study accelerator using spaced repetition and LLM tutoring.</p>
+        <p class="project-coming">&#x25A0; Link coming soon</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="section" id="interests">
+    <div class="section-label">Interests</div>
+    <div class="interests">
+      <div class="interest-item">
+        <div class="interest-num">01</div>
+        <div class="interest-body">
+          <h3>AI application in physics</h3>
+          <p>Using machine learning to accelerate physical simulation, discover equations, and model complex systems.</p>
+        </div>
+      </div>
+      <div class="interest-item">
+        <div class="interest-num">02</div>
+        <div class="interest-body">
+          <h3>World models</h3>
+          <p>Latent-space reasoning, predictive coding, and model-based reinforcement learning.</p>
+        </div>
+      </div>
+      <div class="interest-item">
+        <div class="interest-num">03</div>
+        <div class="interest-body">
+          <h3>AI for self-study</h3>
+          <p>Personalised learning systems, AI tutors, and tools that help people learn faster and deeper.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">About</div>
+    <div class="about-block">
+      <p>I'm <strong>Dat Ha</strong>, a 2nd-year student with a focus on AI applications. I care about building things that are both <strong>technically rigorous</strong> and <strong>genuinely useful</strong> — whether that's tools that help people understand physics, systems that reason about the world, or apps that make self-directed learning more effective.</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Dat Ha &copy; 2026</p>
+    <div class="footer-links">
+      <a href="https://github.com" target="_blank">GitHub</a>
+      <a href="mailto:phudatha1210@gmail.com">Email</a>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
